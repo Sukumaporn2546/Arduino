@@ -19,6 +19,8 @@ void connectWiFi() {
     delay(500);
     Serial.print(".");
   }
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());  // แสดง IP ของบอร์ด
   Serial.println("WiFi connected.");
 }
 
@@ -55,12 +57,11 @@ void loop() {
 
   float pm1, pm2_5, pm4, pm10, humidity, temp, voc, nox;
   uint16_t error = sen5x.readMeasuredValues(pm1, pm2_5, pm4, pm10, humidity, temp, voc, nox);
-
   if (!error) {
     String payload = "{";
-    payload += "\"pm1.0\":" + String(pm1, 2) + ",";
-    payload += "\"pm2.5\":" + String(pm2_5, 2) + ",";
-    payload += "\"pm4.0\":" + String(pm4, 2) + ",";
+    payload += "\"pm1_0\":" + String(pm1, 2) + ",";
+    payload += "\"pm2_5\":" + String(pm2_5, 2) + ",";
+    payload += "\"pm4_0\":" + String(pm4, 2) + ",";
     payload += "\"pm10\":" + String(pm10, 2) + ",";
     payload += "\"humidity\":" + String(humidity, 2) + ",";
     payload += "\"temperature\":" + String(temp, 2) + ",";
